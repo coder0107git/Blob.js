@@ -9,19 +9,14 @@
  */
 
 ;(function () {
-  var global = typeof window === 'object'
-      ? window : typeof self === 'object'
-      ? self : this;
+  var global = typeof window === 'object' ? window : typeof self === 'object' ? self : this;
 
-  var BlobBuilder = global.BlobBuilder
-    || global.WebKitBlobBuilder
-    || global.MSBlobBuilder
-    || global.MozBlobBuilder;
+  var BlobBuilder = global.BlobBuilder || global.WebKitBlobBuilder || global.MSBlobBuilder || global.MozBlobBuilder;
 
   global.URL = global.URL || global.webkitURL || function (href, a) {
   	a = document.createElement('a');
   	a.href = href;
-  	return a
+  	return a;
   };
 
   var origBlob = global.Blob;
@@ -31,9 +26,7 @@
   var blobSupported = false;
   var blobSupportsArrayBufferView = false;
   var arrayBufferSupported = !!global.ArrayBuffer;
-  var blobBuilderSupported = BlobBuilder
-    && BlobBuilder.prototype.append
-    && BlobBuilder.prototype.getBlob;
+  var blobBuilderSupported = BlobBuilder && BlobBuilder.prototype.append && BlobBuilder.prototype.getBlob;
 
   try {
     // Check if Blob constructor is supported
@@ -62,7 +55,7 @@
           buf = copy.buffer
         }
 
-        return buf
+        return buf;
       }
 
       return chunk
@@ -138,20 +131,20 @@
         target[at++] = ((value >> 6) & 0x1f) | 0xc0
       } else if ((value & 0xffff0000) === 0) {  // 3-byte
         target[at++] = ((value >> 12) & 0x0f) | 0xe0;
-        target[at++] = ((value >> 6) & 0x3f) | 0x80
+        target[at++] = ((value >> 6) & 0x3f) | 0x80;
       } else if ((value & 0xffe00000) === 0) {  // 4-byte
         target[at++] = ((value >> 18) & 0x07) | 0xf0;
         target[at++] = ((value >> 12) & 0x3f) | 0x80;
-        target[at++] = ((value >> 6) & 0x3f) | 0x80
+        target[at++] = ((value >> 6) & 0x3f) | 0x80;
       } else {
         // FIXME: do we care
         continue
       }
 
-      target[at++] = (value & 0x3f) | 0x80
+      target[at++] = (value & 0x3f) | 0x80;
     }
 
-    return target.slice(0, at)
+    return target.slice(0, at);
   }
 
   /********************************************************/
