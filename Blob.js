@@ -11,23 +11,23 @@
 ;(function () {
   var global = typeof window === 'object'
       ? window : typeof self === 'object'
-      ? self : this
+      ? self : this;
 
   var BlobBuilder = global.BlobBuilder
     || global.WebKitBlobBuilder
     || global.MSBlobBuilder
-    || global.MozBlobBuilder
+    || global.MozBlobBuilder;
 
   global.URL = global.URL || global.webkitURL || function (href, a) {
-  	a = document.createElement('a')
-  	a.href = href
-  	return a
+  	a = document.createElement('a');
+  	a.href = href;
+  	return a;
   }
 
-  var origBlob = global.Blob
-  var createObjectURL = URL.createObjectURL
-  var revokeObjectURL = URL.revokeObjectURL
-  var strTag = global.Symbol && global.Symbol.toStringTag
+  var origBlob = global.Blob;
+  var createObjectURL = URL.createObjectURL;
+  var revokeObjectURL = URL.revokeObjectURL;
+  var strTag = global.Symbol && global.Symbol.toStringTag;
   var blobSupported = false
   var blobSupportsArrayBufferView = false
   var arrayBufferSupported = !!global.ArrayBuffer
@@ -247,7 +247,7 @@
     ? TextDecoder.prototype.decode.bind(new TextDecoder())
     : stringDecode
 
-    function handleXHRSend(_send, Blob, nativeBlob) {
+  function handleXHRSend(_send, Blob, nativeBlob) {
     var _setRequestHeader = XMLHttpRequest.prototype.setRequestHeader
 
     XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
